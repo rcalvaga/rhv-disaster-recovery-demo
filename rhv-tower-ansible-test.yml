@@ -1,6 +1,6 @@
 ---
 - name: testing RHV with Ansible
-  hosts: all
+  hosts: localhost
   
   tasks:
   - name: Obtain SSO token
