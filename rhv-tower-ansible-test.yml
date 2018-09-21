@@ -5,8 +5,8 @@
   tasks:
   - name: Obtain SSO token
     ovirt_auth:
-      url: "{{ lookup('env','OVIRT_URL') }}"
-      username: "{{ lookup('env','OVIRT_USERNAME') }}"
-      password: "{{ lookup('env','OVIRT_PASSWORD') }}"
-      ca_file: "{{ lookup('env','OVIRT_CAFILE') }}"
-      state: present
+   #   url: "{{ lookup('env','OVIRT_URL') }}"
+   #   username: "{{ lookup('env','OVIRT_USERNAME') }}"
+   #   password: "{{ lookup('env','OVIRT_PASSWORD') }}"
+   #   ca_file: "{{ lookup('env','OVIRT_CAFILE') }}"
+   #   state: present
