@@ -5,4 +5,7 @@
   tasks:
   - name: Obtain SSO token
     ovirt_auth:
+      url: "{{ OVIRT_URL }}"
+      username: "{{ OVIRT_USERNAME }}"
+      password: "{{ OVIRT_PASSWORD }}"
       state: present
