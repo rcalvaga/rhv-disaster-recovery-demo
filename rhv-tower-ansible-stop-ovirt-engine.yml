@@ -1,0 +1,6 @@
+- hosts: RHVM
+  tasks:
+    - name: Stop ovirt-engine
+      systemd:
+        state: stopped
+        name: ovirt-engine
