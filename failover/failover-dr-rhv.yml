@@ -1,0 +1,11 @@
+lines (9 sloc)  170 Bytes
+---
+- name: Failover RHV
+  hosts: localhost
+  connection: local
+  vars:
+    dr_target_host: secondary
+    dr_source_map: primary
+ 
+  roles:
+    - oVirt.disaster-recovery
