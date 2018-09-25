@@ -1,0 +1,12 @@
+---
+- hosts: DR-Gluster[0]
+  tags:
+    - fail_over
+  vars: 
+     slave_vols: rhv-sd1-dr 
+
+  tasks:
+  - name: Gluster tasks
+    import_role:
+      name: gluster
+      tasks_from: failover.yml
