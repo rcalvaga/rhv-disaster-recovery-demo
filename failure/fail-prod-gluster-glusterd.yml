@@ -4,6 +4,8 @@
       systemd:
         state: stopped
         name: glusterd
+      when: answer
 
     - name: Kill running glusterfs processes
       command: pkill glusterfs
+      when: answer
