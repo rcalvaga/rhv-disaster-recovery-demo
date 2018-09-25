@@ -27,7 +27,7 @@
     ansible_user: root
   
   tasks:
-    - name: Stop ovirt-engine
+    - name: Stop ovirt-engine to simulate failure
       systemd:
         state: stopped
         name: ovirt-engine
