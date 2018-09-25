@@ -1,0 +1,33 @@
+---
+- hosts: Gluster[0] 
+  vars:
+    MASTER_VOL: rhv-sd1
+    PRIMARY_SLAVE_HOST: 10.200.0.81
+    SLAVE_VOL: rhv-sd1-dr
+    
+  tasks:
+    - name: Simulating geo-replication fail
+      command: gluster volume geo-replication "{{ MASTER_VOL }}" "{{ PRIMARY_SLAVE_HOST }}"::"{{ SLAVE_VOL }}" stop
+
+- hosts: Gluster
+  vars:
+    ansible_user: root
+ 
+  tasks:
+    - name: Stop glusterd to simulate failure
+      systemd:
+        state: stopped
+        name: glusterd
+
+    - name: Kill running glusterfs processes
+      command: pkill glusterfs
+
+- hosts: RHVM
+  vars:
+    ansible_user: root
+  
+  tasks:
+    - name: Stop ovirt-engine
+      systemd:
+        state: stopped
+        name: ovirt-engine
