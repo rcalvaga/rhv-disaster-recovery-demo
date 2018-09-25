@@ -1,6 +1,8 @@
 ---
 - hosts: localhost
   connection: local
+  vars:
+    minutes: 1
   
   tasks:
   - pause:
