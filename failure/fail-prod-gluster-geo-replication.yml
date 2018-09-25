@@ -8,3 +8,4 @@
   tasks:
     - name: Simulating geo-replication fail
       command: gluster volume geo-replication "{{ MASTER_VOL }}" "{{ PRIMARY_SLAVE_HOST }}"::"{{ SLAVE_VOL }}" stop
+      when: answer
