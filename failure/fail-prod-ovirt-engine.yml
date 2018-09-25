@@ -4,3 +4,4 @@
       systemd:
         state: stopped
         name: ovirt-engine
+      when: answer
