@@ -1,7 +1,0 @@
-- hosts: RHVM
-  tasks:
-    - name: Stop ovirt-engine tu Simulate Failure
-      systemd:
-        state: stopped
-        name: ovirt-engine
-      when: answer
