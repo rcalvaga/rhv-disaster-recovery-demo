@@ -1,0 +1,12 @@
+---
+- name: Create Geo-Replication session from Secondary to Primary
+  command: "gluster volume geo-replication rhv-sd1-dr gluster01.example.com::rhv-sd1 create push-pem force"
+
+- name: Config meta volume
+  command: "gluster volume geo-replication rhv-sd1-dr gluster01.example.com::rhv-sd1 config use_meta_volume true"
+
+- name: Config special sync mode for recovery
+  command: "gluster volume geo-replication rhv-sd1-dr gluster01.example.com::rhv-sd1 config special-sync-mode recover"
+
+- name: Start Geo-Replication session
+  command: "gluster volume geo-replication rhv-sd1-dr gluster01.example.com::rhv-sd1 start"
