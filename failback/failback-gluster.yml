@@ -1,0 +1,9 @@
+---
+- hosts: DR-Gluster[0]
+
+  tasks:
+  - name: Failback storage
+    import_role:
+      name: gluster
+      tasks_from: failback.yml
+    tags: fail_back
