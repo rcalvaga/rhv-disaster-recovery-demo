@@ -1,0 +1,18 @@
+---
+- hosts: Gluster
+  vars:
+    ansible_user: root
+ 
+  tasks:
+    - name: Start glusterd
+      command: systemctl start glusterd
+
+- hosts: RHVM
+  vars:
+    ansible_user: root
+  
+  tasks:
+    - name: Start ovirt-engine
+      systemd:
+        state: started
+        name: ovirt-engine
