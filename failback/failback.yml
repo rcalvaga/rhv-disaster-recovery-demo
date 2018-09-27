@@ -1,0 +1,6 @@
+---
+- name: Failback Gluster
+  import_playbook: failback-gluster.yml
+
+- name: Failover RHV
+  import_playbook: failback-rhv.yml
