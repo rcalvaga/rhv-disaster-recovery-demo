@@ -1,0 +1,9 @@
+---
+- name: clean RHV
+  hosts: localhost
+  connection: local
+  vars:
+    dr_source_map: primary
+
+  roles:
+    - oVirt.disaster-recovery
