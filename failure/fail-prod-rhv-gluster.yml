@@ -2,12 +2,12 @@
 - hosts: Gluster[0] 
   vars:
     MASTER_VOL: rhv-sd1
-    PRIMARY_SLAVE_HOST: 10.200.0.81
+    PRIMARY_SLAVE_HOST: dr-gluster01.example.com
     SLAVE_VOL: rhv-sd1-dr
     
   tasks:
     - name: Simulating geo-replication fail
-      command: gluster volume geo-replication "{{ MASTER_VOL }}" "{{ PRIMARY_SLAVE_HOST }}"::"{{ SLAVE_VOL }}" stop
+      command: python /usr/share/glusterfs/scripts/schedule_georep.py {{ MASTER_VOL }} {{ PRIMARY_SLAVE_HOST }} {{ SLAVE_VOL }} 
 
 - hosts: Gluster
   vars:
