@@ -1,0 +1,43 @@
+---
+- hosts: Gluster
+  vars:
+    ansible_user: root
+
+  tasks:
+    - name: Ensure glusterd is active
+      systemd:
+        state: started
+        name: glusterd
+
+    - name: Pause to ensure glusterd is started
+      pause:
+        seconds: 5
+
+    - name: Restart glusterfssharedstorage service
+      systemd:
+        state: restarted
+        name: glusterfssharedstorage
+
+- hosts: Gluster[0] 
+  vars:
+    MASTER_VOL: rhv-sd1
+    PRIMARY_SLAVE_HOST: dr-gluster01.example.com
+    SLAVE_VOL: rhv-sd1-dr
+    
+  tasks:
+    - name: Start geo-replication from primary to slave if needed
+      shell: (gluster volume geo-replication rhv-sd1 dr-gluster01.example.com::rhv-sd1-dr status | grep Stopped >/dev/null 2>&1) &&  gluster volume geo-replication {{ MASTER_VOL }} {{ PRIMARY_SLAVE_HOST }}::{{ SLAVE_VOL }} start
+
+    - name: Ensure {{ MASTER_VOL }} is in read-write mode
+      command: gluster volume set {{ MASTER_VOL }} features.read-only off
+
+- hosts: RHVM
+  vars:
+    ansible_user: root
+
+  tasks:
+    - name: Ensure ovirt-engine is active
+      systemd:
+        state: started
+        name: ovirt-engine
+

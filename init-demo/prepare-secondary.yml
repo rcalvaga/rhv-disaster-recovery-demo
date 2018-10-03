@@ -1,0 +1,30 @@
+---
+- hosts: Gluster
+  vars:
+    ansible_user: root
+
+  tasks:
+    - name: Ensure glusterd is active
+      systemd:
+        state: started
+        name: glusterd
+
+- hosts: Gluster[0] 
+  vars:
+    MASTER_VOL: rhv-sd1
+    PRIMARY_SLAVE_HOST: dr-gluster01.example.com
+    SLAVE_VOL: rhv-sd1-dr
+    
+    - name: Ensure {{ SLAVE_VOL }} is in read-only mode
+      command: gluster volume set {{ SLAVE_VOL }} features.read-only on
+
+- hosts: RHVM
+  vars:
+    ansible_user: root
+
+  tasks:
+    - name: Ensure ovirt-engine is active
+      systemd:
+        state: started
+        name: ovirt-engine
+
