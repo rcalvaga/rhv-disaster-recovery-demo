@@ -1,5 +1,5 @@
 ---
-- hosts: Gluster
+- hosts: DR-Gluster
   vars:
     ansible_user: root
 
@@ -9,7 +9,7 @@
         state: started
         name: glusterd
 
-- hosts: Gluster[0] 
+- hosts: DR-Gluster[0] 
   vars:
     MASTER_VOL: rhv-sd1
     PRIMARY_SLAVE_HOST: dr-gluster01.example.com
@@ -19,7 +19,7 @@
     - name: Ensure {{ SLAVE_VOL }} is in read-only mode
       command: gluster volume set {{ SLAVE_VOL }} features.read-only on
 
-- hosts: RHVM
+- hosts: DR-RHVM
   vars:
     ansible_user: root
 
