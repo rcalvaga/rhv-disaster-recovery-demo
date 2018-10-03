@@ -26,7 +26,7 @@
     
   tasks:
     - name: Start geo-replication from primary to slave if needed
-      shell: (gluster volume geo-replication rhv-sd1 dr-gluster01.example.com::rhv-sd1-dr status | grep Stopped >/dev/null 2>&1) &&  gluster volume geo-replication {{ MASTER_VOL }} {{ PRIMARY_SLAVE_HOST }}::{{ SLAVE_VOL }} start
+      shell: (gluster volume geo-replication rhv-sd1 dr-gluster01.example.com::rhv-sd1-dr status | grep Stopped >/dev/null 2>&1) &&  gluster volume geo-replication {{ MASTER_VOL }} {{ PRIMARY_SLAVE_HOST }}::{{ SLAVE_VOL }} start || true
 
     - name: Ensure {{ MASTER_VOL }} is in read-write mode
       command: gluster volume set {{ MASTER_VOL }} features.read-only off
