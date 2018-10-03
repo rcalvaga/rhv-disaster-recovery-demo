@@ -1,14 +1,4 @@
 ---
-- hosts: DR-RHVH[0]
-  tags:
-    - fail_over 
-
-  tasks:
-  - name: Release SD locks (only for demo)
-    import_role:
-      name: gluster
-      tasks_from: release_lock.yml
-      
 - hosts: DR-Gluster[0]
   tags:
     - fail_over
@@ -20,3 +10,15 @@
     import_role:
       name: gluster
       tasks_from: failover.yml
+
+- hosts: DR-RHVH[0]
+  tags:
+    - fail_over 
+
+  tasks:
+  - name: Release SD locks (only for demo)
+    import_role:
+      name: gluster
+      tasks_from: release_lock.yml
+      
+
