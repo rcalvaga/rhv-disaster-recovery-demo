@@ -7,7 +7,7 @@
     
   tasks:
     - name: Force geo-replication to secondary site
-      command: python /usr/share/glusterfs/scripts/schedule_georep.py {{ MASTER_VOL }} {{ PRIMARY_SLAVE_HOST }} {{ SLAVE_VOL }} 
+      command: python /usr/local/bin/schedule_georep.py {{ MASTER_VOL }} {{ PRIMARY_SLAVE_HOST }} {{ SLAVE_VOL }} 
 
 - hosts: Gluster
   vars:
