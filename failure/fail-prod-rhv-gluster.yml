@@ -9,6 +9,10 @@
     - name: Force geo-replication to secondary site
       command: python /usr/local/bin/schedule_georep.py {{ MASTER_VOL }} {{ PRIMARY_SLAVE_HOST }} {{ SLAVE_VOL }} 
 
+    # TODO: setting to r/o should be done when bringing services up again instead of doing it here
+    - name: Set volume to read-only
+      command: gluster volume set {{ MASTER_VOL }} features.read-only on 
+
 - hosts: Gluster
   vars:
     ansible_user: root
