@@ -15,6 +15,7 @@
     PRIMARY_SLAVE_HOST: dr-gluster01.example.com
     SLAVE_VOL: rhv-sd1-dr
     
+  tasks:
     - name: Ensure {{ SLAVE_VOL }} is in read-only mode
       command: gluster volume set {{ SLAVE_VOL }} features.read-only on
 
