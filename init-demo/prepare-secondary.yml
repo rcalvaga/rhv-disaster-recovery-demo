@@ -23,7 +23,7 @@
       command: "gluster volume reset {{ SLAVE_VOL }} geo-replication.indexing force"
     
     - name: Disabling changelog
-      command: "gluster volume set {{ SLAVE_VOL }} changelog"
+      command: "gluster volume reset {{ SLAVE_VOL }} changelog"
 
 
 - hosts: DR-RHVM
