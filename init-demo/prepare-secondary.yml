@@ -19,6 +19,13 @@
     - name: Ensure {{ SLAVE_VOL }} is in read-only mode
       command: gluster volume set {{ SLAVE_VOL }} features.read-only on
 
+    - name: Disabling indexing
+      command: "gluster volume reset {{ SLAVE_VOL }} geo-replication.indexing force"
+    
+    - name: Disabling changelog
+      command: "gluster volume set {{ SLAVE_VOL }} changelog"
+
+
 - hosts: DR-RHVM
   vars:
     ansible_user: root
