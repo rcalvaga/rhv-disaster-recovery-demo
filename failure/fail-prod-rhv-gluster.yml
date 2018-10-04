@@ -1,5 +1,6 @@
 ---
 - hosts: Gluster[0] 
+  gather_facts: no
   vars:
     MASTER_VOL: rhv-sd1
     PRIMARY_SLAVE_HOST: dr-gluster01.example.com
@@ -14,6 +15,7 @@
       command: gluster volume set {{ MASTER_VOL }} features.read-only on 
 
 - hosts: Gluster
+  gather_facts: no
   vars:
     ansible_user: root
  
@@ -27,6 +29,7 @@
       command: pkill glusterfs
 
 - hosts: RHVM
+  gather_facts: no
   vars:
     ansible_user: root
   
@@ -37,6 +40,7 @@
         name: ovirt-engine
  
 - hosts: RHVH
+  gather_facts: no
   vars:
     ansible_user: root
 

@@ -2,6 +2,7 @@
 - hosts: DR-Gluster[0]
   tags:
     - fail_over
+  gather_facts: no
   vars: 
      slave_vols: rhv-sd1-dr 
 
@@ -14,6 +15,7 @@
 - hosts: DR-RHVH[0]
   tags:
     - fail_over 
+  gather_facts: no
 
   tasks:
   - name: Release SD locks (only for demo)
