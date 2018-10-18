@@ -11,8 +11,9 @@
 - hosts: Gluster[0]
 
   tasks:
-  - name: Stop Geo Replication from Primary to Secondary
+  - name: Prepare Gluster on Primary Site
     import_role:
       name: gluster
-      tasks_from: stop-primary-georep.yml
+      tasks_from: gluster-prepare-failback.yml
     tags: clean_engine
+

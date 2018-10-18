@@ -1,3 +1,7 @@
 ---
 - name: Stop Geo-Replication from Primary to Secondary
   command: "gluster volume geo-replication rhv-sd1 dr-gluster01.example.com::rhv-sd1-dr stop"
+
+- name: Set volume to read-only on Primary site
+  command: "gluster volume set rhv-sd1 features.read-only on"
+
