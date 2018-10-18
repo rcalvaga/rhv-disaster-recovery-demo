@@ -1,0 +1,11 @@
+---
+- hosts: RHVM
+  vars:
+    ansible_user: root
+  
+  tasks:
+    - name: Ensure ovirt-engine is started
+      systemd:
+        state: started
+        name: ovirt-engine
+
