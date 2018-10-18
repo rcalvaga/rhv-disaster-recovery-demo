@@ -8,6 +8,19 @@
       name: glusterd
     tags: clean_engine
 
+  - name: Pause to ensure glusterd is started
+    pause:
+      seconds: 5
+    tags: clean_engine
+
+  # Required for demo environment as the failure simulation
+  # only stops / kills gluster services
+  - name: Restart glusterfssharedstorage service
+    systemd:
+      state: restarted
+      name: glusterfssharedstorage
+    tags: clean_engine
+
 - hosts: Gluster[0]
 
   tasks:
