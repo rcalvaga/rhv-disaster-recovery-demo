@@ -7,3 +7,11 @@
       name: gluster
       tasks_from: failback.yml
     tags: fail_back
+
+- hosts: Gluster[0]
+
+  tasks:
+  - name: Set volume to read-write
+    command: gluster volume set rhv-sd1 features.read-only off
+    tags: fail_back
+
